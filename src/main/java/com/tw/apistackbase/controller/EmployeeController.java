@@ -55,8 +55,18 @@ public class EmployeeController {
 
     }
     @PostMapping
-    public ResponseEntity<Employee> addCompanies(@RequestBody Employee employee){
+    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
         employeeList.add(employee);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Employee> updateEmployeeByID(@RequestBody Employee employee){
+        for (Employee employee1:employeeList){
+            if (employee1.getEmployeeID() == employee.getEmployeeID()){
+                employee1=employee;
+            }
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

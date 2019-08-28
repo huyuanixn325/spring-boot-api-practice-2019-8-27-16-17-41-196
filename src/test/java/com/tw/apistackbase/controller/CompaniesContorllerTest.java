@@ -70,7 +70,7 @@ public class CompaniesContorllerTest {
     }
 
     @Test
-    public void should_return_status_isCreated_and_contentList_when_given_put_request() throws Exception {
+    public void should_return_status_isOK_and_contentList_when_given_put_request() throws Exception {
         mockMvc.perform(put("/companies").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{\"companiesID\":\"7\",\"companiesName\":\"didi\"}"))
                 .andDo(print())
                 .andExpect(status().isOk());

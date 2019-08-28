@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -77,8 +78,16 @@ public class EmployeeControllerTest {
 
     @Test
     public void should_return_status_isCreated_and_contentList_when_given_post_request() throws Exception {
-        mockMvc.perform(post("/employeeID").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{\"employeeID\":7,\"employeeName\":\"xiaoya\",\"gender\":\"female\",\"age\":18,\"compainesID\":3}"))
+        mockMvc.perform(post("/employees").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{\"employeeID\":7,\"employeeName\":\"xiaoya\",\"gender\":\"female\",\"age\":18,\"compainesID\":3}"))
                 .andDo(print())
                 .andExpect(status().isCreated());
     }
+
+    @Test
+    public void should_return_status_isOK_and_contentList_when_given_put_request() throws Exception {
+        mockMvc.perform(put("/employees").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{\"employeeID\":7,\"employeeName\":\"xiaoyaa\",\"gender\":\"female\",\"age\":18,\"compainesID\":3}"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
 }
