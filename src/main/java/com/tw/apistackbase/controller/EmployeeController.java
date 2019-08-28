@@ -54,4 +54,9 @@ public class EmployeeController {
         }
 
     }
+    @PostMapping
+    public ResponseEntity<Employee> addCompanies(@RequestBody Employee employee){
+        employeeList.add(employee);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

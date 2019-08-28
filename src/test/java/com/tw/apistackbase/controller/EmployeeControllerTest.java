@@ -5,11 +5,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -72,4 +74,11 @@ public class EmployeeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("[{\"employeeID\":3,\"employeeName\":\"xiaona\",\"gender\":\"female\",\"age\":18,\"compainesID\":3},{\"employeeID\":4,\"employeeName\":\"xiaoyang\",\"gender\":\"female\",\"age\":18,\"compainesID\":3}]"));
     }
+
+    @Test
+    public void should_return_status_isCreated_and_contentList_when_given_post_request() throws Exception {
+        mockMvc.perform(post("/employeeID").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{\"employeeID\":7,\"employeeName\":\"xiaoya\",\"gender\":\"female\",\"age\":18,\"compainesID\":3}"))
+                .andDo(print())
+                .andExpect(status().isCreated());
     }
+}
