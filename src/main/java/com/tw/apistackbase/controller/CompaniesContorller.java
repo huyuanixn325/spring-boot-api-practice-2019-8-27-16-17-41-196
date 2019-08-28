@@ -49,7 +49,12 @@ public class CompaniesContorller {
             return ResponseEntity.ok(pageCompanies);
         }
 
+    }
 
+    @PostMapping
+    public ResponseEntity<Companies> addCompanies(@RequestBody Companies companies){
+        companiess.add(companies);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 //        private  void initCompanies() {
 //            companiess.add(new Companies(1,"百度"));
