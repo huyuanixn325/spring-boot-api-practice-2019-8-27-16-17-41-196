@@ -28,11 +28,20 @@ public class CompaniesContorllerTest {
     MockMvc mockMvc;
 
     @Test
-    public void should_return_status_isOK_and_content_when_given_a_request() throws Exception {
+    public void should_return_status_isOK_and_content_when_given_a_request_list() throws Exception {
         mockMvc.perform(get("/companies"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("[{\"companiesID\":1,\"companiesName\":\"百度\"},{\"companiesID\":2,\"companiesName\":\"腾讯\"}]"));
     }
 
+    @Test
+    public void should_return_status_isOK_and_content_when_given_a_request_companiesID() throws Exception {
+        mockMvc.perform(get("/companies/1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"companiesID\":1,\"companiesName\":\"百度\"}"));
+    }
+
+    
 }
