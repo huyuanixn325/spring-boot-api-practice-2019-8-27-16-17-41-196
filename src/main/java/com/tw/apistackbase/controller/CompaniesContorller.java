@@ -1,7 +1,7 @@
 package com.tw.apistackbase.controller;
 
 import com.tw.apistackbase.model.Companies;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +15,9 @@ public class CompaniesContorller {
 
     private static List<Companies> companiess = new ArrayList<Companies>(){{
         add(new Companies(1,"百度"));
-        add(new Companies(2,"腾讯"));
-        add(new Companies(3,"阿里"));
-        add(new Companies(4,"头条"));
+//        add(new Companies(2,"腾讯"));
+//        add(new Companies(3,"阿里"));
+//        add(new Companies(4,"头条"));
     }};
 
 
