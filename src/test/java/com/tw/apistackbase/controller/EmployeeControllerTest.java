@@ -10,9 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -90,4 +88,10 @@ public class EmployeeControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    public void should_return_status_isOK_and_contentList_when_given_delete_request() throws Exception {
+        mockMvc.perform(delete("/employees/2"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }

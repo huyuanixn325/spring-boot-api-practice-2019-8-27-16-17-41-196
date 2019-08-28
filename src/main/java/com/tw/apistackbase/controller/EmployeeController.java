@@ -43,7 +43,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/pages")
-    public ResponseEntity<List<Employee>> getCompaiesByPage(@RequestParam int page, @RequestParam int pageSize){
+    public ResponseEntity<List<Employee>> getEmployeeByPage(@RequestParam int page, @RequestParam int pageSize){
         if(employeeList.size()<=(page-1)*pageSize) return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         else {
             List<Employee> employeePages = new ArrayList<>();
@@ -65,6 +65,16 @@ public class EmployeeController {
         for (Employee employee1:employeeList){
             if (employee1.getEmployeeID() == employee.getEmployeeID()){
                 employee1=employee;
+            }
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/{employeeID}")
+    public ResponseEntity<Employee> deleteEmployeeByID(@PathVariable int employeeID){
+        for (int i = 0;i<employeeList.size();i++){
+            if (employeeList.get(i).getEmployeeID() == employeeID){
+                employeeList.remove(i);
             }
         }
         return ResponseEntity.status(HttpStatus.OK).build();
