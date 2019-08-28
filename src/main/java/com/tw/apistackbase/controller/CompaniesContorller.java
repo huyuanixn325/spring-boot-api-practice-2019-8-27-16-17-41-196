@@ -29,7 +29,7 @@ public class CompaniesContorller {
     }
 
     @GetMapping("/{companiesID}")
-    public ResponseEntity<Companies> getAllCompaies(@PathVariable int companiesID){
+    public ResponseEntity<Companies> getCompaiesByID(@PathVariable int companiesID){
         for(Companies companies:companiess){
             if (companies.getCompaniesID()==companiesID){
                 return ResponseEntity.ok(companies);

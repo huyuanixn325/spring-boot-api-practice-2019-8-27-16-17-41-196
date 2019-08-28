@@ -44,4 +44,24 @@ public class EmployeeControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
     }
+
+
+    @Test
+    public void should_return_status_isOK_and_contentList_when_given_request_page_pagesize() throws Exception {
+        mockMvc.perform(get("/employees/pages")
+                .param("page","2")
+                .param("pageSize","2"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("[{\"employeeID\":3,\"employeeName\":\"xiaona\",\"gender\":\"female\",\"age\":18,\"compainesID\":3},{\"employeeID\":4,\"employeeName\":\"xiaoyang\",\"gender\":\"female\",\"age\":18,\"compainesID\":3}]"));
+    }
+
+    @Test
+    public void should_return_status_isNotContent_and_contentList_when_given_request_page_pagesize() throws Exception {
+        mockMvc.perform(get("/employees/pages")
+                .param("page","3")
+                .param("pageSize","2"))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+    }
 }
