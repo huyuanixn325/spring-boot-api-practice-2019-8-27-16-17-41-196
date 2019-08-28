@@ -29,4 +29,19 @@ public class EmployeeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("[{\"employeeID\":1,\"employeeName\":\"xiaohuang\",\"gender\":\"male\",\"age\":18,\"compainesID\":1}]"));
     }
+
+    @Test
+    public void should_return_status_isOK_and_content_when_given_a_request_employeeID() throws Exception {
+        mockMvc.perform(get("/employees/1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"employeeID\":1,\"employeeName\":\"xiaohuang\",\"gender\":\"male\",\"age\":18,\"compainesID\":1}"));
+    }
+
+    @Test
+    public void should_return_status_isNOCONTENT_and_content_when_given_a_request_employeeID() throws Exception {
+        mockMvc.perform(get("/employees/6"))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+    }
 }
