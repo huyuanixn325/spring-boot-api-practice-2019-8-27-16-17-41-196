@@ -21,8 +21,16 @@ public class EmployeeController {
     }};
 
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllEmployee(){
+    public ResponseEntity<List<Employee>> getAllEmployee(@RequestParam(required = false) String gender){
+        if (gender==null)
         return ResponseEntity.ok(employeeList);
+        else {
+            List<Employee> employees = new ArrayList<>();
+            for (Employee employee:employeeList){
+                if (employee.getGender().equals(gender)) employees.add(employee);
+            }
+            return ResponseEntity.ok(employees);
+        }
     }
     @GetMapping("/{employeeID}")
     public ResponseEntity<Employee> getEmployeeByID(@PathVariable int employeeID){

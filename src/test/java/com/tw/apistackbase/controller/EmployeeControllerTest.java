@@ -64,4 +64,12 @@ public class EmployeeControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
     }
-}
+
+    @Test
+    public void should_return_status_isOK_and_content_when_given_a_request_gender() throws Exception {
+        mockMvc.perform(get("/employees").param("gender", "female"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("[{\"employeeID\":3,\"employeeName\":\"xiaona\",\"gender\":\"female\",\"age\":18,\"compainesID\":3},{\"employeeID\":4,\"employeeName\":\"xiaoyang\",\"gender\":\"female\",\"age\":18,\"compainesID\":3}]"));
+    }
+    }
