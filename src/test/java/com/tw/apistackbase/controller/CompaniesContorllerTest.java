@@ -15,8 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -65,9 +64,23 @@ public class CompaniesContorllerTest {
     }
 
     @Test
-    public void should_return_status_isCreated_and_contentList_when_given_request() throws Exception {
+    public void should_return_status_isCreated_and_contentList_when_given_post_request() throws Exception {
         mockMvc.perform(post("/companies").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{\"companiesID\":\"7\",\"companiesName\":\"huawei\"}"))
                 .andDo(print())
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void should_return_status_isCreated_and_contentList_when_given_put_request() throws Exception {
+        mockMvc.perform(put("/companies").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content("{\"companiesID\":\"7\",\"companiesName\":\"didi\"}"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void should_return_status_isCreated_and_contentList_when_given_delete_request() throws Exception {
+        mockMvc.perform(delete("/companies/2"))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 }

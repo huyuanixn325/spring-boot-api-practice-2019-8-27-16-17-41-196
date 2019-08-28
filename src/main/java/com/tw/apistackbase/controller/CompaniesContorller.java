@@ -56,6 +56,26 @@ public class CompaniesContorller {
         companiess.add(companies);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @PutMapping
+    public ResponseEntity<Companies> updateCompanies(@RequestBody Companies companies){
+        for (Companies companies1:companiess){
+            if (companies1.getCompaniesID() == companies.getCompaniesID()){
+                companies1=companies;
+            }
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/{companiesID}")
+    public ResponseEntity<Companies> deleteCompanies(@PathVariable int companiesID){
+        for (int i = 0;i<companiess.size();i++){
+            if (companiess.get(i).getCompaniesID() == companiesID){
+                companiess.remove(i);
+            }
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 //        private  void initCompanies() {
 //            companiess.add(new Companies(1,"百度"));
 //            companiess.add(new Companies(2,"腾讯"));
