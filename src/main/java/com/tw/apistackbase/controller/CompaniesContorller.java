@@ -68,7 +68,7 @@ public class CompaniesContorller {
     }
 
     @DeleteMapping("/{companiesID}")
-    public ResponseEntity<Companies> deleteCompanies(@PathVariable int companiesID){
+    public ResponseEntity<Companies> deleteCompaniesByID(@PathVariable int companiesID){
         for (int i = 0;i<companiess.size();i++){
             if (companiess.get(i).getCompaniesID() == companiesID){
                 companiess.remove(i);

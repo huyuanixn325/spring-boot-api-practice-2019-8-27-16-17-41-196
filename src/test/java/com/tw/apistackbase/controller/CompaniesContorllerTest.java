@@ -77,7 +77,7 @@ public class CompaniesContorllerTest {
     }
 
     @Test
-    public void should_return_status_isCreated_and_contentList_when_given_delete_request() throws Exception {
+    public void should_return_status_isOK_and_contentList_when_given_delete_request() throws Exception {
         mockMvc.perform(delete("/companies/2"))
                 .andDo(print())
                 .andExpect(status().isOk());

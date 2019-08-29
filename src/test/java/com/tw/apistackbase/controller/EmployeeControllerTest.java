@@ -28,7 +28,7 @@ public class EmployeeControllerTest {
         mockMvc.perform(get("/employees"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("[{\"employeeID\":1,\"employeeName\":\"xiaohuang\",\"gender\":\"male\",\"age\":18,\"compainesID\":1}]"));
+                .andExpect(content().string("[{\"employeeID\":1,\"employeeName\":\"xiaohuang\",\"gender\":\"male\",\"age\":18,\"compainesID\":1},{\"employeeID\":2,\"employeeName\":\"xiaofei\",\"gender\":\"male\",\"age\":18,\"compainesID\":1},{\"employeeID\":3,\"employeeName\":\"xiaona\",\"gender\":\"female\",\"age\":18,\"compainesID\":3},{\"employeeID\":4,\"employeeName\":\"xiaoyang\",\"gender\":\"female\",\"age\":18,\"compainesID\":3}]"));
     }
 
     @Test
